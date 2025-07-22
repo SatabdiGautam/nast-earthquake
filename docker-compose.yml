@@ -8,6 +8,8 @@ services:
     volumes:
       - .:/app
     working_dir: /app
+    environment:
+      - PYTHONPATH=/app
     command: python webapp/app.py
 
   cli:
@@ -15,4 +17,6 @@ services:
     volumes:
       - .:/app
     working_dir: /app
+    environment:
+      - PYTHONPATH=/app
     command: python cli/cli_view.py
