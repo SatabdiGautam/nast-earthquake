@@ -1,31 +1,31 @@
-# NAST Earthquake Visualization
+# NAST Earthquake Data Downloader
 
 ## 1) Project Title  
-**NAST Earthquake Visualization**
+**NAST PROJECT - Automated Downloading and Local Storage of Earthquake Data**
 
 ---
 
 ## 2) Description  
-This project provides tools to download and visualize earthquake data via two interfaces:
+This project automates downloading earthquake data from USGS and stores it locally for further processing.  
+It provides a **Command-Line Interface (CLI)** for easy interaction and management of earthquake data.
 
-- A simple **Command-Line Interface (CLI)**
-- A lightweight **Web Application** powered by Flask
-
-It demonstrates earthquake data visualization techniques and is fully containerized for easy deployment using Docker and Docker Compose.
+The entire project is containerized using Docker for easy deployment and consistency across environments. Version control is handled with Git.
 
 ---
 
 ## 3) Features  
-- Visualize earthquake data in real-time  
-- CLI-based interaction for quick tasks  
-- Web-based interface accessible via browser  
-- Dockerized environment for simplified setup and deployment
+- Automated downloading of earthquake data from USGS  
+- Local storage and management of earthquake event data  
+- Simple CLI interface for data operations  
+- Fully containerized with Docker for easy setup  
+- Git for version control and collaboration  
 
 ---
 
 ## 4) Prerequisites  
-- [Docker](https://docs.docker.com/get-docker/) (for containerized deployment)  
+- [Docker](https://docs.docker.com/get-docker/) & [Docker Compose](https://docs.docker.com/compose/install/)  
 - Python 3.10+ (if running without Docker)  
+- Git (for cloning and version control)
 
 ---
 
@@ -33,46 +33,63 @@ It demonstrates earthquake data visualization techniques and is fully containeri
 
 ### Option 1: Using Docker Compose (Recommended)
 
-1. Clone the repository:
+1. Clone the Git repository:
     ```bash
     git clone <repository-url>
     cd <repository-folder>
     ```
 
-2. Build and start the services:
+2. Build and start the CLI service:
     ```bash
-    docker-compose up --build
+    docker-compose up --build cli
     ```
 
-3. Access the web app by opening [http://localhost:3000](http://localhost:3000) in your browser.
+3. The CLI will run inside the container to download and manage earthquake data.
 
-4. To stop the containers, press `Ctrl+C` and then run:
+4. To stop the container:
     ```bash
+    Ctrl+C
     docker-compose down
     ```
 
+---
+
 ### Option 2: Running Locally without Docker
 
-1. Ensure Python 3.10+ is installed.
+1. Clone the Git repository:
+    ```bash
+    git clone <repository-url>
+    cd <repository-folder>
+    ```
 
-2. Install dependencies:
+2. Install Python dependencies:
     ```bash
     pip install -r requirements.txt
     ```
 
-3. Run the web app:
+3. Run the CLI script locally:
     ```bash
-    python webapp/app.py
+    python cli/cli_view.py
     ```
-
-4. Access the web app at [http://localhost:3000](http://localhost:3000).
 
 ---
 
 ## 6) Usage
 
-### CLI Interface
+Run the CLI script to download and manage earthquake data:
 
-Run the CLI script to interact via command line:
 ```bash
 python cli/cli_view.py
+```
+
+## 7) Version Control
+
+The project uses **Git** for source control. Make sure Git is installed to clone and manage the repository.
+
+---
+
+## 8) Notes
+
+- This project focuses on **automated local downloading and storage of earthquake data** using a CLI.  
+- Docker ensures the application runs consistently regardless of the local environment.  
+- The web application has been removed to focus solely on CLI-based data downloading.
