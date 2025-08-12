@@ -41,10 +41,21 @@ def append_new_data(country, bounds, data_dir="data/usgs"):
     
     if os.path.exists(csv_path):
         old_df = pd.read_csv(csv_path)
+        
+        # Drop all NA columns from both df before concatenation
+        new_df = new_df.dropna(axis=1, how="all")
+        old_df = old_df.dropna(axis=1, how="all")
+        
         combined = pd.concat([new_df,old_df], ignore_index=True)
         combined.drop_duplicates(subset="id",inplace=True)
-    else:
-        combined = new_df
         
-    combined.to_csv(csv_path, index=False)
-    print(f"{country}_earthquake.csv updated.")
+        if len(combined) > len(old_df):
+            combined.to_csv(csv_path, index=False)
+            print(f"{country}_earthquake.csv updated with {len(combined) - len(old_df)} new entries.")
+        else:
+            print(f"[{country}] No new earthquake entries to add.")
+        
+    else:
+        combined = new_df.dropna(axis=1,how="all")
+        combined.to_csv(csv_path, index=False)
+        print(f"{country}_earthquake.csv created with {len(combined)} entries.")
