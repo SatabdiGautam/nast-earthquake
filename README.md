@@ -6,7 +6,7 @@
 ---
 
 ## 2) Description  
-This project automates downloading earthquake data from USGS and stores it locally for further processing.  
+This project automates downloading earthquake data and stores it locally for further processing.  
 It provides a **Command-Line Interface (CLI)** for easy interaction and management of earthquake data.
 
 Version control is handled with Git.
@@ -14,7 +14,7 @@ Version control is handled with Git.
 ---
 
 ## 3) Features  
-- Automated downloading of earthquake data from USGS  
+- Automated downloading of earthquake data from USGS, Raspberryshake  
 - Local storage and management of earthquake event data  
 - Simple CLI interface for data operations  
 - Git for version control and collaboration  
@@ -31,7 +31,7 @@ Version control is handled with Git.
 
 1. Clone the Git repository:
     ```bash
-    git clone <https://github.com/SatabdiGautam/nast-earthquake.git>
+    git clone <https://github.com/SatabdiGautam/nast-earthquake-download.git>
     cd <repository-folder>
     ```
 
