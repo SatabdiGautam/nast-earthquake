@@ -1,8 +1,20 @@
 {
-    "nepal":{
-        "minlatitude": 24.207,
-        "maxlatitude": 32.621,
-        "minlongitude": 74.443,
-        "maxlongitude": 93.516
+    "nepal": {
+        "minlatitude": 26.347,
+        "maxlatitude": 30.447,
+        "minlongitude": 80.058,
+        "maxlongitude": 88.201
+    },
+    "india": {
+        "minlatitude": 6.554,
+        "maxlatitude": 35.674,
+        "minlongitude": 68.111,
+        "maxlongitude": 97.395
+    },
+    "china": {
+        "minlatitude": 18.161,
+        "maxlatitude": 53.560,
+        "minlongitude": 73.675,
+        "maxlongitude": 135.093
     }
 }

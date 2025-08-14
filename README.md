@@ -46,5 +46,4 @@ Version control is handled with Git.
 
 Run the CLI script to download and manage earthquake data:
 
-```bash
-python3 cli/cli_view.py
+
