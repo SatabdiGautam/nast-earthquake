@@ -2,7 +2,7 @@ import os
 import requests
 import pandas as pd
 from datetime import datetime, timedelta, timezone
-from core.usgs.utils import load_latest_date, format_usgs_url
+from core.usgs.utils import load_latest_date, format_usgs_url  
 from io import StringIO
 
 def ensure_directory_exists(path):
@@ -16,17 +16,17 @@ def append_new_data(country, bounds, data_dir="data/usgs"):
     last_date = load_latest_date(csv_path)
     
     if last_date:
-        # Start from next day
+        # Start from next day after last recorded earthquake
         start_date = (last_date + timedelta(days=1)).date()
     else:
-        #First run: start from yesterday
-        start_date = (now_utc - timedelta(days=1)).date()
+        # First-time run: start from 2000-01-01
+        start_date = datetime(2000, 1, 1).date()
     
     # End at yesterday 23:59:59 UTC
-    end_date = (now_utc- timedelta(days=1)).date()
+    end_date = (now_utc - timedelta(days=1)).date()
     
     if start_date > end_date:
-        print(f"[{country}] upto date, No new data to download")
+        print(f"[{country}] Up to date. No new data to download.")
         return
     
     url = format_usgs_url(start_date, end_date, bounds)
@@ -42,12 +42,12 @@ def append_new_data(country, bounds, data_dir="data/usgs"):
     if os.path.exists(csv_path):
         old_df = pd.read_csv(csv_path)
         
-        # Drop all NA columns from both df before concatenation
+        # Drop all-NA columns from both before concatenation
         new_df = new_df.dropna(axis=1, how="all")
         old_df = old_df.dropna(axis=1, how="all")
         
-        combined = pd.concat([new_df,old_df], ignore_index=True)
-        combined.drop_duplicates(subset="id",inplace=True)
+        combined = pd.concat([new_df, old_df], ignore_index=True)
+        combined.drop_duplicates(subset="id", inplace=True)
         
         if len(combined) > len(old_df):
             combined.to_csv(csv_path, index=False)
@@ -56,6 +56,6 @@ def append_new_data(country, bounds, data_dir="data/usgs"):
             print(f"[{country}] No new earthquake entries to add.")
         
     else:
-        combined = new_df.dropna(axis=1,how="all")
+        combined = new_df.dropna(axis=1, how="all")
         combined.to_csv(csv_path, index=False)
         print(f"{country}_earthquake.csv created with {len(combined)} entries.")
