@@ -6,7 +6,6 @@ from xml.etree import ElementTree as ET
 FDSN_STATION_URL = "https://fdsnws.raspberryshakedata.com/fdsnws/station/1/query"
 FDSN_DATA_URL = "https://fdsnws.raspberryshakedata.com/fdsnws/dataselect/1/query"
 
-
 def load_country_bounds(country_name: str, config_path="config/country_bounds.json") -> dict:
     """
     Load bounding box for a country from config.
